@@ -8,10 +8,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 
-	"your-app-path/databases"
-	"your-app-path/models"
-	"your-app-path/websocket"
-	"your-app-path/mahasiswacontroller"
+	"GO-RESTAPI-GIN/databases"
+	"GO-RESTAPI-GIN/models"
+	"GO-RESTAPI-GIN/websocket"
+	"GO-RESTAPI-GIN/mahasiswacontroller"
 )
 
 func TestIndex(t *testing.T) {
