@@ -1,0 +1,170 @@
+basePath: /api/v1
+definitions:
+  models.Mahasiswa:
+    properties:
+      id:
+        type: integer
+      jurusan:
+        type: string
+      nama:
+        type: string
+      nim:
+        type: string
+    type: object
+  models.RequestMahasiswa:
+    properties:
+      jurusan:
+        type: string
+      nama:
+        type: string
+      nim:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: auliardana@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Data Mahasiswa
+  version: "1.0"
+paths:
+  /mahasiswas:
+    get:
+      consumes:
+      - application/json
+      description: get all students data
+      operationId: get-all-students
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Mahasiswa'
+      summary: Show all students
+      tags:
+      - students
+    post:
+      consumes:
+      - application/json
+      description: create a student
+      operationId: create-a-student
+      parameters:
+      - description: data of the student
+        in: body
+        name: '{object}'
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestMahasiswa'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Mahasiswa'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: create a student
+      tags:
+      - students
+  /mahasiswas/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a student data by id
+      operationId: delete-a-student
+      parameters:
+      - description: ID of the student
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully update student by id
+          schema:
+            type: string
+        "400":
+          description: student not found
+          schema:
+            type: string
+        "500":
+          description: Failed to delete Mahasiswa
+          schema:
+            type: string
+      summary: delete a student
+      tags:
+      - students
+    get:
+      consumes:
+      - application/json
+      description: get a students data by id
+      operationId: get-a-student-by-id
+      parameters:
+      - description: ID of the student
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Mahasiswa'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Show a student
+      tags:
+      - students
+    put:
+      consumes:
+      - application/json
+      description: update a student data by id
+      operationId: update-a-student
+      parameters:
+      - description: ID of the student
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: data of the student
+        in: body
+        name: '{object}'
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestMahasiswa'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully update student by id
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: update a student
+      tags:
+      - students
+swagger: "2.0"
